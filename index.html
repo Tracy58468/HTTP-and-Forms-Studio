@@ -6,14 +6,39 @@
 		// TODO: create a handler
     window.addEventListener("load", function(){
         // TODO: register the handler
+		console.log("here's our function");
+		let form = document.getElementById("searchForm");
+		let textInput = document.querySelector("input[name = q]");
+		form.addEventListener("submit", function(event) {
+            alert("submit clicked");
+				let engineValue = document.querySelector("input[name = engine]:checked");
+				let actions = {
+					"Google": "https://www.google.com/search",
+					"DuckDuckGo": "https://duckduckgo.com/",
+					"Bing": "https://www.bing.com/search/",
+					"Ask": "https://www.ask.com/web"
+				};
+				form.setAttribute("action", actions[engineValue.value]);
+				if (textInput.value === "") {
+          			alert("You haven't entered any search terms.");
+					event.preventDefault();
+				}
+		});
     });
 	</script>
 </head>
 
 <body>
+	<h1 style = "text-align: center">Our Search Page</h1>
 
-	<form id="searchForm">
+	<form id = "searchForm" style = "text-align: center">
     <!-- TODO: add form elements -->
+		<input type = "text" name = "q" placeholder = "Enter search terms here."/><br /><br />
+		<label><input type = "radio" name = "engine" value = "Google"/>Google</label>
+		<label><input type = "radio" name = "engine" value = "DuckDuckGo"/>DuckDuckGo</label>
+		<label><input type = "radio" name = "engine" value = "Bing"/>Bing</label>
+		<label><input type = "radio" name = "engine" value = "Ask"/>Ask</label><br /><br />
+		<button type = "submit" id = "submit" style = "background-color: blue; color: white">Go!</button>
 	</form>
 
 </body>
